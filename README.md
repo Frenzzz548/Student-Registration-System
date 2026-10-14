@@ -456,41 +456,26 @@ Simpan gambar di folder `docs/screenshots/` dengan nama file seperti pada setiap
 
 *Keterangan: ........................................*
 
-## 13. Checkpoint
+## 13. Kesimpulan
 
-**HOL 1**
+Project **Student Registration System** berhasil menggabungkan dua Hands-On Lab, yaitu HOL 1 (SQL Server) dan HOL 2 (WPF + ADO.NET), dalam satu solution Visual Studio.
 
-- [ ] SQL Server dan SSMS terinstal dan terkoneksi
-- [ ] `StudentRegistrationDB` dibuat
-- [ ] Tabel `Programs` dan `Students` dibuat
-- [ ] PRIMARY KEY, UNIQUE, FOREIGN KEY diterapkan
-- [ ] Data program studi dan mahasiswa dimasukkan
-- [ ] Query SELECT, JOIN, COUNT, WHERE, GROUP BY berjalan
-- [ ] Relasi 1:N dipahami
+**Yang telah dicapai**
 
-**HOL 2**
+- Database `StudentRegistrationDB` dibuat dengan dua tabel, `Programs` dan `Students`, yang dihubungkan oleh relasi **One-to-Many (1:N)** melalui PRIMARY KEY, UNIQUE KEY, dan FOREIGN KEY.
+- Integritas data terbukti lewat pengujian: Foreign Key menolak `ProgramId` yang tidak ada, dan UNIQUE constraint menolak NIM yang duplikat.
+- Query `SELECT`, `INNER JOIN`, `LEFT JOIN`, `WHERE`, `COUNT`, dan `GROUP BY` berhasil dijalankan di SSMS.
+- Aplikasi WPF terhubung ke SQL Server memakai **ADO.NET** (`SqlConnection`, `SqlCommand`, `SqlDataReader`) dan menampilkan data mahasiswa pada **DataGrid**.
+- Akses data dipisahkan ke `StudentRepository`, model data ke `Student` dan `Program`, dan konfigurasi koneksi ke `DatabaseSettings`, sehingga tanggung jawab tiap class jelas.
+- Fitur tambahan dari mini challenge: kolom Alamat dan Dibuat, total mahasiswa, filter program studi, dan ringkasan jumlah mahasiswa per program.
 
-- [ ] `Student.cs`, `Program.cs`, `StudentRepository.cs`
-- [ ] `Microsoft.Data.SqlClient`, `SqlConnection`, `SqlCommand`, `SqlDataReader`
-- [ ] `MainWindow.xaml` dengan DataGrid dan tombol Refresh
-- [ ] Data berhasil ditampilkan
+**Keterbatasan**
 
-**Output yang dikumpulkan (HOL 1)**
+Aplikasi saat ini hanya membaca dan menampilkan data (*read-only*) serta masih memakai code-behind. Fitur tambah, ubah, hapus, dan pencarian akan dikembangkan pada lab berikutnya (lihat Roadmap), lalu dilanjutkan ke arsitektur MVVM.
 
-- [ ] Screenshot SQL Server terkoneksi (12.1a)
-- [ ] Screenshot database (12.1b)
-- [ ] Screenshot tabel Programs (12.1c)
-- [ ] Screenshot tabel Students (12.1d)
-- [ ] Screenshot hasil JOIN (12.1e)
-- [ ] File `.sql` berisi seluruh script (`Database/StudentRegistrationDB.sql`)
+## 14. Disclaimer
 
-## 14. Roadmap
+- **Data dummy.** Seluruh data pada project ini (nama mahasiswa, NIM, tanggal lahir, alamat, dan nomor telepon) adalah **data fiktif** untuk keperluan pembelajaran. Data tidak merepresentasikan orang sungguhan, dan kemiripan dengan data nyata hanyalah kebetulan.
+- **Konfigurasi hanya untuk lab lokal.** Koneksi memakai Windows Authentication dengan `TrustServerCertificate=True` pada SQL Server lokal. Pengaturan ini tidak dianjurkan untuk server produksi, yang memerlukan sertifikat tepercaya, manajemen kredensial yang aman, dan hak akses terbatas.
+- **Script bersifat destruktif.** `StudentRegistrationDB.sql` menghapus (`DROP`) dan membuat ulang tabel `Programs` dan `Students` setiap dijalankan. Jangan jalankan pada database berisi data penting.
 
-```
-LAB 1  SQL Server          -> Database, Tables, PK/FK            (selesai)
-LAB 2  WPF + ADO.NET       -> Repository, DataGrid               (selesai)
-LAB 3  CRUD                -> Tambah, Edit, Hapus, Search
-LAB 4  MVVM                -> Data Binding, ICommand
-LAB 5  Rich UI             -> Dashboard, Chart, Navigation
-LAB 6  Professional UI     -> MVVM + Repository, Validation, Async/Await, REST API
-```
