@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>StudentRegistration</RootNamespace>
+    <AssemblyName>StudentRegistration</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- LAB 06 (HOL 2): Microsoft.Data.SqlClient untuk ADO.NET ke SQL Server -->
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,172 @@
+<Window x:Class="StudentRegistration.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Student Registration"
+        Height="640"
+        Width="1150"
+        MinHeight="480"
+        MinWidth="860"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Judul + info server -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+            <TextBlock Text="Student Registration"
+                       FontSize="26"
+                       FontWeight="Bold"/>
+            <TextBlock x:Name="ServerTextBlock"
+                       Foreground="Gray"
+                       Margin="0,2,0,0"/>
+        </StackPanel>
+
+        <!-- Toolbar: Refresh, filter program studi, total mahasiswa -->
+        <Grid Grid.Row="1" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="RefreshButton"
+                    Grid.Column="0"
+                    Content="Refresh"
+                    Width="100"
+                    Height="28"
+                    Click="RefreshButton_Click"/>
+
+            <TextBlock Grid.Column="1"
+                       Text="Program Studi:"
+                       VerticalAlignment="Center"
+                       Margin="30,0,8,0"/>
+
+            <ComboBox x:Name="ProgramFilterComboBox"
+                      Grid.Column="2"
+                      Width="240"
+                      Height="28"
+                      DisplayMemberPath="ProgramName"
+                      SelectedValuePath="ProgramId"
+                      SelectionChanged="ProgramFilterComboBox_SelectionChanged"/>
+
+            <TextBlock x:Name="TotalTextBlock"
+                       Grid.Column="3"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       FontSize="16"
+                       FontWeight="SemiBold"/>
+        </Grid>
+
+        <!-- DataGrid mahasiswa (LAB 12 + Mini Challenge 1 & 2) -->
+        <DataGrid x:Name="StudentDataGrid"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  AlternatingRowBackground="#F5F7FA"
+                  GridLinesVisibility="Horizontal"
+                  HeadersVisibility="Column"
+                  SelectionMode="Single">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn
+                    Header="ID"
+                    Binding="{Binding StudentId}"
+                    Width="60"/>
+
+                <DataGridTextColumn
+                    Header="NIM"
+                    Binding="{Binding NIM}"
+                    Width="100"/>
+
+                <DataGridTextColumn
+                    Header="Nama"
+                    Binding="{Binding Name}"
+                    Width="180"/>
+
+                <DataGridTextColumn
+                    Header="Program Studi"
+                    Binding="{Binding ProgramName}"
+                    Width="180"/>
+
+                <DataGridTextColumn
+                    Header="Tanggal Lahir"
+                    Binding="{Binding BirthDate, StringFormat=dd/MM/yyyy}"
+                    Width="120"/>
+
+                <DataGridTextColumn
+                    Header="No. Telepon"
+                    Binding="{Binding PhoneNumber}"
+                    Width="140"/>
+
+                <!-- Challenge 1: Address -->
+                <DataGridTextColumn
+                    Header="Alamat"
+                    Binding="{Binding Address}"
+                    Width="250"/>
+
+                <!-- Challenge 2: CreatedAt -->
+                <DataGridTextColumn
+                    Header="Dibuat"
+                    Binding="{Binding CreatedAt, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}"
+                    Width="150"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <!-- Ringkasan jumlah mahasiswa per program studi (GROUP BY) -->
+        <StackPanel Grid.Row="3" Margin="0,15,0,0">
+            <TextBlock Text="Jumlah Mahasiswa per Program Studi"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,6"/>
+
+            <ItemsControl x:Name="ProgramSummaryItemsControl">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#C9D1DB"
+                                BorderThickness="1"
+                                CornerRadius="4"
+                                Padding="10,6"
+                                Margin="0,0,8,8"
+                                Background="White">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding ProgramCode}"
+                                           FontWeight="Bold"
+                                           Margin="0,0,6,0"/>
+                                <TextBlock Text="{Binding ProgramName}"
+                                           Foreground="Gray"
+                                           Margin="0,0,10,0"/>
+                                <TextBlock Text="{Binding StudentCount}"
+                                           FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+        <!-- Status bar -->
+        <TextBlock x:Name="StatusTextBlock"
+                   Grid.Row="4"
+                   Foreground="Gray"
+                   Margin="0,4,0,0"/>
+
+    </Grid>
+
+</Window>
