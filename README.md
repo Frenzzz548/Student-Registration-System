@@ -9,7 +9,13 @@ Aplikasi desktop **WPF + C# (.NET 8)** yang terhubung ke **SQL Server** memakai 
 | **HOL 1** | Membangun Database Student Registration dengan SQL Server | `Database/StudentRegistrationDB.sql`, `Database/Query-Challenges.sql` |
 | **HOL 2** | Membuat Aplikasi WPF + C# Terhubung SQL Server dengan ADO.NET | Project `StudentRegistration/` |
 
-> **Identitas** — Nama: ____________________  NRP: ____________________  Kelas: ____________
+> **Identitas** 
+
+| Data | Isi |
+|---|---|
+| Nama | Bagus Cahya Saputra |
+| NRP | 5025241067 |
+| Kelas | PBKK-C |
 
 ---
 
